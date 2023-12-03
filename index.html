@@ -10,7 +10,7 @@
         <div id="output"></div>
     </div>
     <input type="text" id="input" placeholder="Type a message...">
-    <button id="sendBtn">Send</button>
+    <button onclick="sendMessage()">Send</button>
 </div>
 
 <script>
@@ -24,7 +24,7 @@ function sendMessage() {
     document.getElementById('output').innerHTML += '<p><strong>You:</strong> ' + input + '</p>';
 
     // Send the message to the server using fetch API or XMLHttpRequest
-    fetch('https://pastebin.com/raw/ieePMtDt', {
+    fetch('chat.js', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -40,12 +40,6 @@ function sendMessage() {
         console.error('Error:', error);
     });
 }
-
-// Add event listener to the send button
-document.getElementById('sendBtn').addEventListener('click', function(event) {
-    sendMessage();
-    event.preventDefault(); // Prevent the default form submission
-});
 </script>
 </body>
 </html>
