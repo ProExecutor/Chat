@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ChatBot</title>
+</head>
+<body>
+<div id="chat-container">
+    <div id="chat-window">
+        <div id="output"></div>
+    </div>
+    <input type="text" id="input" placeholder="Type a message...">
+    <button id="sendBtn">Send</button>
+</div>
+
+<script>
+// Function to send a message to the server and receive a response
+function sendMessage() {
+    var input = document.getElementById('input').value;
+    // Clear the input
+    document.getElementById('input').value = '';
+
+    // Display the user's message in the chat window
+    document.getElementById('output').innerHTML += '<p><strong>You:</strong> ' + input + '</p>';
+
+    // Send the message to the server using fetch API or XMLHttpRequest
+    fetch('https://pastebin.com/raw/ieePMtDt', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: input }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Display the ChatBot's response in the chat window
+        document.getElementById('output').innerHTML += '<p><strong>ChatBot:</strong> ' + data.reply + '</p>';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+// Add event listener to the send button
+document.getElementById('sendBtn').addEventListener('click', function(event) {
+    sendMessage();
+    event.preventDefault(); // Prevent the default form submission
+});
+</script>
+</body>
+</html>
