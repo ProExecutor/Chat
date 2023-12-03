@@ -24,7 +24,7 @@ function sendMessage() {
     document.getElementById('output').innerHTML += '<p><strong>You:</strong> ' + input + '</p>';
 
     // Send the message to the server using fetch API or XMLHttpRequest
-    fetch('chat.js', {
+    fetch('https://raw.githubusercontent.com/ProExecutor/Chat/main/chat.js', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
